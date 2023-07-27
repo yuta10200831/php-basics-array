@@ -18,7 +18,7 @@ $tweets = [
         'tweets' => 'すき焼きを食べたい',
         'created_at' => '2022/10/24',
     ],
-    [ 
+    [
         'id' => 4,
         'userName' => 'さとう',
         'tweets' => '寿司を食べたい',
@@ -42,7 +42,17 @@ $tweets = [
         'tweets' => 'まだ水曜日かー',
         'created_at' => '2022/10/26',
     ],
-]; ?>
+]; 
+
+
+$filteredTweets = [];
+
+foreach ($tweets as $tweet) {
+    if ($tweet['userName'] === 'さとう') {
+        $filteredTweets[] = $tweet;
+    }
+}
+?>
 
 <!-- 以下はHTMLのコードになります -->
 <!-- 今は「こんな処理をしているんだな〜」とざっくり見ていただけたらと思います！ -->
@@ -70,7 +80,7 @@ $tweets = [
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($tweets as $tweet): ?>
+                    <?php foreach ($filteredTweets as $tweet): ?>
                         <tr>
                             <td><?php echo $tweet['userName']; ?></td>
                             <td><?php echo $tweet['tweets']; ?></td>
