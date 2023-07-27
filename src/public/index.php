@@ -44,14 +44,30 @@ $tweets = [
     ],
 ]; 
 
-
-$filteredTweets = [];
-
-foreach ($tweets as $tweet) {
-    if ($tweet['userName'] === 'さとう') {
-        $filteredTweets[] = $tweet;
+// 関数の作成
+function filterTweetsByUsername($tweets, $username) {
+    $filteredTweets = [];
+        foreach ($tweets as $tweet) {
+            if ($tweet['userName'] === $username) {
+                $filteredTweets[] = $tweet;
+            }
+        }
+    
+        return $filteredTweets;
     }
-}
+    
+    // ユーザー名「さとう」のツイートを抽出する
+    $filteredTweets = filterTweetsByUsername($tweets, 'さとう');
+
+
+// $filteredTweets = [];
+
+// foreach ($tweets as $tweet) {
+//     if ($tweet['userName'] === 'さとう') {
+//         $filteredTweets[] = $tweet;
+//     }
+// }
+
 ?>
 
 <!-- 以下はHTMLのコードになります -->
@@ -80,13 +96,13 @@ foreach ($tweets as $tweet) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($filteredTweets as $tweet): ?>
-                        <tr>
-                            <td><?php echo $tweet['userName']; ?></td>
-                            <td><?php echo $tweet['tweets']; ?></td>
-                            <td><?php echo $tweet['created_at']; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
+                <?php foreach ($filteredTweets as $tweet): ?>
+                    <tr>
+                        <td><?php echo $tweet['userName']; ?></td>
+                        <td><?php echo $tweet['tweets']; ?></td>
+                        <td><?php echo $tweet['created_at']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
