@@ -74,7 +74,7 @@ $tweetsFilter = new TweetsFilter($tweets);
 $filteredTweets = $tweetsFilter->filterByUsername('さとう');
 
 
-// // 関数の作成
+// // 関数を作成
 // function filterTweetsByUsername($tweets, $username) {
 //     $filteredTweets = [];
 //         foreach ($tweets as $tweet) {
