@@ -1,28 +1,5 @@
 <?php
-class TweetsFilter
-{
-    private $tweets;
-
-    public function __construct($tweets)
-    {
-        $this->tweets = $tweets;
-    }
-
-    public function filterByUsername($username)
-    {
-        $filteredTweets = [];
-
-        foreach ($this->tweets as $tweet) {
-            if ($tweet['userName'] === $username) {
-                $filteredTweets[] = $tweet;
-            }
-        }
-
-        return $filteredTweets;
-    }
-}
-
-$tweets = [
+$tweetsData = [
     [
         'id' => 1,
         'userName' => 'さとう',
@@ -67,8 +44,50 @@ $tweets = [
     ],
 ]; 
 
+class Tweets
+{
+    private $tweets;
+
+    public function __construct($tweets)
+    {
+        $this->tweets = $tweets;
+    }
+    public function getAllTweets()
+    {
+        return $this->tweets;
+    }
+}
+
+class TweetsFilter
+{
+    private $tweets;
+
+    public function __construct($tweets)
+    {
+        $this->tweets = $tweets;
+    }
+
+    public function filterByUsername($username)
+    {
+        $filteredTweets = [];
+
+        foreach ($this->tweets as $tweet) {
+            if ($tweet['userName'] === $username) {
+                $filteredTweets[] = $tweet;
+            }
+        }
+
+        return $filteredTweets;
+    }
+}
+
+
+
+// Tweetsクラスのインスタンスを作成
+$tweets = new Tweets($tweetsData);
+
 // TweetsFilterクラスのインスタンス変数を作成
-$tweetsFilter = new TweetsFilter($tweets);
+$tweetsFilter = new TweetsFilter($tweets->getAllTweets());
 
 // ユーザー名「さとう」のツイートを抽出する
 $filteredTweets = $tweetsFilter->filterByUsername('さとう');
